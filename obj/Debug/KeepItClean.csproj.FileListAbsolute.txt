@@ -28,3 +28,16 @@ D:\_Backup\_Programming\Offline-Sandbox\C-Sharp\KeepItClean\KeepItClean\obj\Debu
 D:\_Backup\_Programming\Offline-Sandbox\C-Sharp\KeepItClean\KeepItClean\obj\Debug\KeepItCl.F1C76D72.Up2Date
 D:\_Backup\_Programming\Offline-Sandbox\C-Sharp\KeepItClean\KeepItClean\obj\Debug\KeepItClean.exe
 D:\_Backup\_Programming\Offline-Sandbox\C-Sharp\KeepItClean\KeepItClean\obj\Debug\KeepItClean.pdb
+D:\casdev\ffm-github\own-prj\KeepItClean\bin\Debug\KeepItClean.exe.config
+D:\casdev\ffm-github\own-prj\KeepItClean\bin\Debug\KeepItClean.exe
+D:\casdev\ffm-github\own-prj\KeepItClean\bin\Debug\KeepItClean.pdb
+D:\casdev\ffm-github\own-prj\KeepItClean\bin\Debug\Microsoft.WindowsAPICodePack.xml
+D:\casdev\ffm-github\own-prj\KeepItClean\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+D:\casdev\ffm-github\own-prj\KeepItClean\obj\Debug\KeepItClean.csprojAssemblyReference.cache
+D:\casdev\ffm-github\own-prj\KeepItClean\obj\Debug\KeepItClean.MainWindow.resources
+D:\casdev\ffm-github\own-prj\KeepItClean\obj\Debug\KeepItClean.Properties.Resources.resources
+D:\casdev\ffm-github\own-prj\KeepItClean\obj\Debug\KeepItClean.csproj.GenerateResource.cache
+D:\casdev\ffm-github\own-prj\KeepItClean\obj\Debug\KeepItClean.csproj.CoreCompileInputs.cache
+D:\casdev\ffm-github\own-prj\KeepItClean\obj\Debug\KeepItClean.csproj.CopyComplete
+D:\casdev\ffm-github\own-prj\KeepItClean\obj\Debug\KeepItClean.exe
+D:\casdev\ffm-github\own-prj\KeepItClean\obj\Debug\KeepItClean.pdb

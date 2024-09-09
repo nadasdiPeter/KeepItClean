@@ -1,5 +1,4 @@
-﻿
-namespace KeepItClean.src
+﻿namespace KeepItClean.src
 {
    static class config
    {

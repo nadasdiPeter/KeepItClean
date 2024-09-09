@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>KeepItClean</RootNamespace>
     <AssemblyName>KeepItClean</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -61,6 +61,7 @@
     <Compile Include="src\Config.cs" />
     <Compile Include="src\Database.cs" />
     <Compile Include="src\DebugFileWriter.cs" />
+    <Compile Include="src\FileMover.cs" />
     <Compile Include="src\FileReader.cs" />
     <Compile Include="src\iFile.cs" />
     <Compile Include="src\MainWindow.cs">
@@ -69,7 +70,7 @@
     <Compile Include="src\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="src\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>

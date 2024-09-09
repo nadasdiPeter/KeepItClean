@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -10,11 +9,14 @@ namespace KeepItClean.src
 {
    class IFile
    {
-      public string Path { get; set; }
-      public string Directory { get; set; }
-      public string FileName { get; set; }
-      public string Extension { get; set; }
+      public string Path { get; }
+      public string Directory { get; }
+      public string FileName { get; }
+      public string Extension { get; }
       public DateTime CreationDate { get; set; }
+      public bool DateError { get; set; } = false;
+      public string NewPath { get; set; }
+
 
       public IFile(string path)
       {
@@ -23,6 +25,7 @@ namespace KeepItClean.src
          Directory = System.IO.Path.GetDirectoryName(Path);
          Extension = System.IO.Path.GetExtension(Path).ToLower();
          GetDate(Path);
+         NewPath = "";
       }
 
       private bool IsImage(string ext) => config.IMAGE_FORMATS.Contains(Extension);
@@ -43,6 +46,7 @@ namespace KeepItClean.src
                }
                else
                {
+                  DateError = true;
                   DebugFileWriter.Add_Info("[Image]: DateNotFound: " + path);
                   CreationDate = File.GetLastWriteTime(path);
                }
@@ -53,5 +57,25 @@ namespace KeepItClean.src
             CreationDate = File.GetLastWriteTime(path);
          }
       }
+
+
+      /* Date */
+
+      public string Year() => CreationDate.Year.ToString();
+
+      public string Month() => config.MONTHS[CreationDate.Month - 1];
+
+      public string Month_MM() => CreationDate.Month.ToString("00");
+
+      public string Day() => CreationDate.Day.ToString("00");
+
+      public string Date() => Year() + "-" + Month_MM() + "-" + Day();
+
+
+      /* NewPath */
+
+      public string NewPath_FileName() => System.IO.Path.GetFileName(NewPath);
+
+      public string NewPath_Directory() => System.IO.Path.GetDirectoryName(NewPath);
    }
 }
