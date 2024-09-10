@@ -22,5 +22,41 @@ namespace KeepItClean.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool RECURSIVE_SEARCH_SETTING {
+            get {
+                return ((bool)(this["RECURSIVE_SEARCH_SETTING"]));
+            }
+            set {
+                this["RECURSIVE_SEARCH_SETTING"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DELETE_EMPTY_FOLDER_SETTING {
+            get {
+                return ((bool)(this["DELETE_EMPTY_FOLDER_SETTING"]));
+            }
+            set {
+                this["DELETE_EMPTY_FOLDER_SETTING"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DATE_ERROR_SEPARATION_SETTING {
+            get {
+                return ((bool)(this["DATE_ERROR_SEPARATION_SETTING"]));
+            }
+            set {
+                this["DATE_ERROR_SEPARATION_SETTING"] = value;
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using KeepItClean.src;
 using System.ComponentModel;
+using System.IO;
 
 namespace KeepItClean
 {
@@ -11,11 +12,10 @@ namespace KeepItClean
    {
       private BackgroundWorker Read_BackgroundWorker = new BackgroundWorker();
 
-
-
       public MainWindow()
       {
          InitializeComponent();
+         Load_UserSettings();
          InitializeBackgroundWorker();
          textBox_fileFilter.Text = String.Join(", ", config.IMAGE_FORMATS);
       }
@@ -44,12 +44,19 @@ namespace KeepItClean
          }
       }
 
-      private void Read_Click(object sender, EventArgs e)
+      private void Import_Click(object sender, EventArgs e)
       {
-         if (Read_BackgroundWorker.IsBusy != true)
+         if(Directory.Exists(textBox_source.Text))
          {
-            SetProgressBarStatus(true, "Reading...", 0);
-            Read_BackgroundWorker.RunWorkerAsync(); // Start the asynchronous operation.
+            if (Read_BackgroundWorker.IsBusy != true)
+            {
+               ClearDatabase();
+               Read_BackgroundWorker.RunWorkerAsync(); // Start the asynchronous operation.
+            }
+         }
+         else
+         {
+            MessageBox.Show("No source directory set, or its not existing.", "KeepItClean Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
          }
       }
 
@@ -59,7 +66,7 @@ namespace KeepItClean
          {
             if (!textBox_target.Text.Equals(""))
             {
-               Database.AssigneNewPaths(textBox_target.Text, true);
+               Database.AssigneNewPaths(textBox_target.Text, dateErrorSeparationMenuItem.Checked);
                DataGridView_Refresh();
                SetProgressBarStatus(true, "Analysis completed.", 100);
             }
@@ -70,17 +77,31 @@ namespace KeepItClean
          }
          else
          {
-            MessageBox.Show("No files in the databse currently.", "KeepItClean Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("No files in the database currently.", "KeepItClean Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
          }
       }
 
       private void Start_Click(object sender, EventArgs e)
       {
-         FileMover.RelocateFiles();
-         FileMover.DeleteEmptyFolders(textBox_source.Text);
-         SetProgressBarStatus(true, "Relocation completed.", 100);
-         Database.Clear();
-         DataGridView_Refresh();
+         if (Database.Files().Count > 0)
+         {
+            if(Database.Files()[0].NewPath != "")
+            {
+               FileMover.RelocateFiles();
+               if(deleteEmptyFoldersMenuItem.Checked)
+                  FileMover.DeleteEmptyFolders(textBox_source.Text);
+               SetProgressBarStatus(true, "Relocation completed.", 100);
+               ClearDatabase();
+            }
+            else
+            {
+               MessageBox.Show("New paths are not set, please use ANALISE first.", "KeepItClean Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+         }
+         else
+         {
+            MessageBox.Show("No files in the database currently.", "KeepItClean Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+         }
       }
 
 
@@ -120,6 +141,13 @@ namespace KeepItClean
          dataView.Refresh();
       }
 
+      private void ClearDatabase()
+      {
+         Database.Clear();
+         dataView.DataSource = null;
+         DataGridView_Refresh();
+      }
+
 
 
       private void InitializeBackgroundWorker()
@@ -142,12 +170,12 @@ namespace KeepItClean
          else
          {
             // Perform a time consuming operation and report progress.
-            new FileReader(textBox_source.Text, true, textBox_fileFilter.Text, ref worker);
+            new FileReader(textBox_source.Text, recursiveFileImportMenuItem.Checked, textBox_fileFilter.Text, ref worker);
          }
       }
 
       // This event handler updates the progress.
-      private void Read_BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e) => SetProgressBarStatus(true, "Reading...", e.ProgressPercentage);
+      private void Read_BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e) => SetProgressBarStatus(true, "Importing files...", e.ProgressPercentage);
 
       // This event handler deals with the results of the background operation.
       private void Read_BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -156,5 +184,21 @@ namespace KeepItClean
          DataGridView_Update(Database.Files());
       }
 
+
+
+      private void Load_UserSettings()
+      {
+         dateErrorSeparationMenuItem.Checked = Properties.Settings.Default.DATE_ERROR_SEPARATION_SETTING;
+         deleteEmptyFoldersMenuItem.Checked = Properties.Settings.Default.DELETE_EMPTY_FOLDER_SETTING;
+         recursiveFileImportMenuItem.Checked = Properties.Settings.Default.RECURSIVE_SEARCH_SETTING;
+      }
+
+      private void Save_UserSettings(object sender, EventArgs e)
+      {
+         Properties.Settings.Default.DATE_ERROR_SEPARATION_SETTING = dateErrorSeparationMenuItem.Checked;
+         Properties.Settings.Default.DELETE_EMPTY_FOLDER_SETTING = deleteEmptyFoldersMenuItem.Checked;
+         Properties.Settings.Default.RECURSIVE_SEARCH_SETTING = recursiveFileImportMenuItem.Checked;
+         Properties.Settings.Default.Save();
+      }
    }
 }

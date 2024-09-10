@@ -28,38 +28,46 @@
       /// </summary>
       private void InitializeComponent()
       {
+         this.components = new System.ComponentModel.Container();
          this.textBox_source = new System.Windows.Forms.TextBox();
          this.label1 = new System.Windows.Forms.Label();
          this.label_target = new System.Windows.Forms.Label();
          this.textBox_target = new System.Windows.Forms.TextBox();
-         this.button_browse_source = new System.Windows.Forms.Button();
-         this.button_browse_target = new System.Windows.Forms.Button();
          this.dataView = new System.Windows.Forms.DataGridView();
          this.label_files = new System.Windows.Forms.Label();
-         this.button_read = new System.Windows.Forms.Button();
-         this.button_start = new System.Windows.Forms.Button();
-         this.button_analise = new System.Windows.Forms.Button();
          this.label_fileFilter = new System.Windows.Forms.Label();
          this.textBox_fileFilter = new System.Windows.Forms.TextBox();
          this.progress_lablel = new System.Windows.Forms.Label();
          this.progressBar = new System.Windows.Forms.ProgressBar();
-         this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-         this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.menuStrip = new System.Windows.Forms.MenuStrip();
+         this.filesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.browseSourceMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.browseTargetMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.settingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.deleteEmptyFoldersMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.recursiveFileImportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.dateErrorSeparationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.importMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.analiseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.startMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+         this.toolTip = new System.Windows.Forms.ToolTip(this.components);
          ((System.ComponentModel.ISupportInitialize)(this.dataView)).BeginInit();
-         this.menuStrip1.SuspendLayout();
+         this.menuStrip.SuspendLayout();
          this.SuspendLayout();
          // 
          // textBox_source
          // 
-         this.textBox_source.Location = new System.Drawing.Point(12, 48);
+         this.textBox_source.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+         this.textBox_source.Location = new System.Drawing.Point(158, 18);
          this.textBox_source.Name = "textBox_source";
-         this.textBox_source.Size = new System.Drawing.Size(668, 20);
+         this.textBox_source.Size = new System.Drawing.Size(810, 21);
          this.textBox_source.TabIndex = 0;
+         this.toolTip.SetToolTip(this.textBox_source, "Source folder path.");
          // 
          // label1
          // 
          this.label1.AutoSize = true;
-         this.label1.Location = new System.Drawing.Point(12, 32);
+         this.label1.Location = new System.Drawing.Point(79, 21);
          this.label1.Name = "label1";
          this.label1.Size = new System.Drawing.Size(73, 13);
          this.label1.TabIndex = 1;
@@ -68,7 +76,7 @@
          // label_target
          // 
          this.label_target.AutoSize = true;
-         this.label_target.Location = new System.Drawing.Point(12, 71);
+         this.label_target.Location = new System.Drawing.Point(79, 47);
          this.label_target.Name = "label_target";
          this.label_target.Size = new System.Drawing.Size(70, 13);
          this.label_target.TabIndex = 3;
@@ -76,82 +84,34 @@
          // 
          // textBox_target
          // 
-         this.textBox_target.Location = new System.Drawing.Point(12, 87);
+         this.textBox_target.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+         this.textBox_target.Location = new System.Drawing.Point(158, 44);
          this.textBox_target.Name = "textBox_target";
-         this.textBox_target.Size = new System.Drawing.Size(668, 20);
+         this.textBox_target.Size = new System.Drawing.Size(810, 21);
          this.textBox_target.TabIndex = 2;
-         // 
-         // button_browse_source
-         // 
-         this.button_browse_source.Location = new System.Drawing.Point(686, 46);
-         this.button_browse_source.Name = "button_browse_source";
-         this.button_browse_source.Size = new System.Drawing.Size(102, 23);
-         this.button_browse_source.TabIndex = 4;
-         this.button_browse_source.Text = "Browse Source";
-         this.button_browse_source.UseVisualStyleBackColor = true;
-         this.button_browse_source.Click += new System.EventHandler(this.BrowseSource_Click);
-         // 
-         // button_browse_target
-         // 
-         this.button_browse_target.Location = new System.Drawing.Point(686, 85);
-         this.button_browse_target.Name = "button_browse_target";
-         this.button_browse_target.Size = new System.Drawing.Size(102, 23);
-         this.button_browse_target.TabIndex = 5;
-         this.button_browse_target.Text = "Browse Target";
-         this.button_browse_target.UseVisualStyleBackColor = true;
-         this.button_browse_target.Click += new System.EventHandler(this.BrowseTarget_Click);
+         this.toolTip.SetToolTip(this.textBox_target, "Target folder path.");
          // 
          // dataView
          // 
          this.dataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-         this.dataView.Location = new System.Drawing.Point(12, 190);
+         this.dataView.Location = new System.Drawing.Point(82, 186);
          this.dataView.Name = "dataView";
-         this.dataView.Size = new System.Drawing.Size(776, 559);
+         this.dataView.Size = new System.Drawing.Size(886, 563);
          this.dataView.TabIndex = 6;
          // 
          // label_files
          // 
          this.label_files.AutoSize = true;
-         this.label_files.Location = new System.Drawing.Point(12, 174);
+         this.label_files.Location = new System.Drawing.Point(79, 170);
          this.label_files.Name = "label_files";
          this.label_files.Size = new System.Drawing.Size(31, 13);
          this.label_files.TabIndex = 7;
          this.label_files.Text = "Files:";
          // 
-         // button_read
-         // 
-         this.button_read.Location = new System.Drawing.Point(798, 190);
-         this.button_read.Name = "button_read";
-         this.button_read.Size = new System.Drawing.Size(178, 23);
-         this.button_read.TabIndex = 8;
-         this.button_read.Text = "Read";
-         this.button_read.UseVisualStyleBackColor = true;
-         this.button_read.Click += new System.EventHandler(this.Read_Click);
-         // 
-         // button_start
-         // 
-         this.button_start.Location = new System.Drawing.Point(799, 248);
-         this.button_start.Name = "button_start";
-         this.button_start.Size = new System.Drawing.Size(177, 23);
-         this.button_start.TabIndex = 9;
-         this.button_start.Text = "Start";
-         this.button_start.UseVisualStyleBackColor = true;
-         this.button_start.Click += new System.EventHandler(this.Start_Click);
-         // 
-         // button_analise
-         // 
-         this.button_analise.Location = new System.Drawing.Point(799, 219);
-         this.button_analise.Name = "button_analise";
-         this.button_analise.Size = new System.Drawing.Size(177, 23);
-         this.button_analise.TabIndex = 10;
-         this.button_analise.Text = "Analise";
-         this.button_analise.UseVisualStyleBackColor = true;
-         this.button_analise.Click += new System.EventHandler(this.Analise_Click);
-         // 
          // label_fileFilter
          // 
          this.label_fileFilter.AutoSize = true;
-         this.label_fileFilter.Location = new System.Drawing.Point(12, 113);
+         this.label_fileFilter.Location = new System.Drawing.Point(79, 73);
          this.label_fileFilter.Name = "label_fileFilter";
          this.label_fileFilter.Size = new System.Drawing.Size(48, 13);
          this.label_fileFilter.TabIndex = 12;
@@ -159,15 +119,16 @@
          // 
          // textBox_fileFilter
          // 
-         this.textBox_fileFilter.Location = new System.Drawing.Point(12, 129);
+         this.textBox_fileFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+         this.textBox_fileFilter.Location = new System.Drawing.Point(158, 70);
          this.textBox_fileFilter.Name = "textBox_fileFilter";
-         this.textBox_fileFilter.Size = new System.Drawing.Size(668, 20);
+         this.textBox_fileFilter.Size = new System.Drawing.Size(810, 21);
          this.textBox_fileFilter.TabIndex = 11;
          // 
          // progress_lablel
          // 
          this.progress_lablel.AutoSize = true;
-         this.progress_lablel.Location = new System.Drawing.Point(796, 289);
+         this.progress_lablel.Location = new System.Drawing.Point(79, 111);
          this.progress_lablel.Name = "progress_lablel";
          this.progress_lablel.Size = new System.Drawing.Size(67, 13);
          this.progress_lablel.TabIndex = 13;
@@ -176,27 +137,123 @@
          // 
          // progressBar
          // 
-         this.progressBar.Location = new System.Drawing.Point(799, 305);
+         this.progressBar.Location = new System.Drawing.Point(82, 127);
          this.progressBar.Name = "progressBar";
-         this.progressBar.Size = new System.Drawing.Size(173, 23);
+         this.progressBar.Size = new System.Drawing.Size(886, 23);
          this.progressBar.TabIndex = 14;
          this.progressBar.Visible = false;
          // 
-         // menuStrip1
+         // menuStrip
          // 
-         this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem});
-         this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-         this.menuStrip1.Name = "menuStrip1";
-         this.menuStrip1.Size = new System.Drawing.Size(984, 24);
-         this.menuStrip1.TabIndex = 15;
-         this.menuStrip1.Text = "menuStrip";
+         this.menuStrip.BackColor = System.Drawing.Color.DarkSeaGreen;
+         this.menuStrip.Dock = System.Windows.Forms.DockStyle.Left;
+         this.menuStrip.Font = new System.Drawing.Font("Segoe UI", 10F);
+         this.menuStrip.ImageScalingSize = new System.Drawing.Size(50, 50);
+         this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.filesMenuItem,
+            this.settingsMenuItem,
+            this.importMenuItem,
+            this.analiseMenuItem,
+            this.startMenuItem});
+         this.menuStrip.Location = new System.Drawing.Point(0, 0);
+         this.menuStrip.Name = "menuStrip";
+         this.menuStrip.ShowItemToolTips = true;
+         this.menuStrip.Size = new System.Drawing.Size(70, 761);
+         this.menuStrip.TabIndex = 15;
+         this.menuStrip.Text = "Menu";
          // 
-         // settingsToolStripMenuItem
+         // filesMenuItem
          // 
-         this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-         this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-         this.settingsToolStripMenuItem.Text = "Settings";
+         this.filesMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.browseSourceMenuItem,
+            this.browseTargetMenuItem});
+         this.filesMenuItem.Image = global::KeepItClean.Properties.Resources.Files_512;
+         this.filesMenuItem.Name = "filesMenuItem";
+         this.filesMenuItem.Size = new System.Drawing.Size(85, 54);
+         this.filesMenuItem.ToolTipText = "Files";
+         // 
+         // browseSourceMenuItem
+         // 
+         this.browseSourceMenuItem.Name = "browseSourceMenuItem";
+         this.browseSourceMenuItem.Size = new System.Drawing.Size(166, 24);
+         this.browseSourceMenuItem.Text = "Browse source";
+         this.browseSourceMenuItem.Click += new System.EventHandler(this.BrowseSource_Click);
+         // 
+         // browseTargetMenuItem
+         // 
+         this.browseTargetMenuItem.Name = "browseTargetMenuItem";
+         this.browseTargetMenuItem.Size = new System.Drawing.Size(166, 24);
+         this.browseTargetMenuItem.Text = "Browse target";
+         this.browseTargetMenuItem.Click += new System.EventHandler(this.BrowseTarget_Click);
+         // 
+         // settingsMenuItem
+         // 
+         this.settingsMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteEmptyFoldersMenuItem,
+            this.recursiveFileImportMenuItem,
+            this.dateErrorSeparationMenuItem});
+         this.settingsMenuItem.Image = global::KeepItClean.Properties.Resources.Settings_512;
+         this.settingsMenuItem.Name = "settingsMenuItem";
+         this.settingsMenuItem.Size = new System.Drawing.Size(57, 54);
+         this.settingsMenuItem.ToolTipText = "Settings";
+         // 
+         // deleteEmptyFoldersMenuItem
+         // 
+         this.deleteEmptyFoldersMenuItem.Checked = true;
+         this.deleteEmptyFoldersMenuItem.CheckOnClick = true;
+         this.deleteEmptyFoldersMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+         this.deleteEmptyFoldersMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+         this.deleteEmptyFoldersMenuItem.Name = "deleteEmptyFoldersMenuItem";
+         this.deleteEmptyFoldersMenuItem.Size = new System.Drawing.Size(205, 24);
+         this.deleteEmptyFoldersMenuItem.Text = "Delete empty folders";
+         this.deleteEmptyFoldersMenuItem.CheckedChanged += new System.EventHandler(this.Save_UserSettings);
+         // 
+         // recursiveFileImportMenuItem
+         // 
+         this.recursiveFileImportMenuItem.Checked = true;
+         this.recursiveFileImportMenuItem.CheckOnClick = true;
+         this.recursiveFileImportMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+         this.recursiveFileImportMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+         this.recursiveFileImportMenuItem.Name = "recursiveFileImportMenuItem";
+         this.recursiveFileImportMenuItem.Size = new System.Drawing.Size(205, 24);
+         this.recursiveFileImportMenuItem.Text = "Recursive file import";
+         this.recursiveFileImportMenuItem.CheckedChanged += new System.EventHandler(this.Save_UserSettings);
+         // 
+         // dateErrorSeparationMenuItem
+         // 
+         this.dateErrorSeparationMenuItem.Checked = true;
+         this.dateErrorSeparationMenuItem.CheckOnClick = true;
+         this.dateErrorSeparationMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+         this.dateErrorSeparationMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+         this.dateErrorSeparationMenuItem.Name = "dateErrorSeparationMenuItem";
+         this.dateErrorSeparationMenuItem.Size = new System.Drawing.Size(205, 24);
+         this.dateErrorSeparationMenuItem.Text = "DateError separation";
+         this.dateErrorSeparationMenuItem.CheckedChanged += new System.EventHandler(this.Save_UserSettings);
+         // 
+         // importMenuItem
+         // 
+         this.importMenuItem.Name = "importMenuItem";
+         this.importMenuItem.Size = new System.Drawing.Size(85, 23);
+         this.importMenuItem.Text = "Import";
+         this.importMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+         this.importMenuItem.ToolTipText = "Import";
+         this.importMenuItem.Click += new System.EventHandler(this.Import_Click);
+         // 
+         // analiseMenuItem
+         // 
+         this.analiseMenuItem.Name = "analiseMenuItem";
+         this.analiseMenuItem.Size = new System.Drawing.Size(85, 23);
+         this.analiseMenuItem.Text = "Analise";
+         this.analiseMenuItem.ToolTipText = "Analise";
+         this.analiseMenuItem.Click += new System.EventHandler(this.Analise_Click);
+         // 
+         // startMenuItem
+         // 
+         this.startMenuItem.Name = "startMenuItem";
+         this.startMenuItem.Size = new System.Drawing.Size(85, 23);
+         this.startMenuItem.Text = "Start";
+         this.startMenuItem.ToolTipText = "Start";
+         this.startMenuItem.Click += new System.EventHandler(this.Start_Click);
          // 
          // MainWindow
          // 
@@ -207,24 +264,20 @@
          this.Controls.Add(this.progress_lablel);
          this.Controls.Add(this.label_fileFilter);
          this.Controls.Add(this.textBox_fileFilter);
-         this.Controls.Add(this.button_analise);
-         this.Controls.Add(this.button_start);
-         this.Controls.Add(this.button_read);
          this.Controls.Add(this.label_files);
          this.Controls.Add(this.dataView);
-         this.Controls.Add(this.button_browse_target);
-         this.Controls.Add(this.button_browse_source);
          this.Controls.Add(this.label_target);
          this.Controls.Add(this.textBox_target);
          this.Controls.Add(this.label1);
          this.Controls.Add(this.textBox_source);
-         this.Controls.Add(this.menuStrip1);
-         this.MainMenuStrip = this.menuStrip1;
+         this.Controls.Add(this.menuStrip);
+         this.MainMenuStrip = this.menuStrip;
          this.Name = "MainWindow";
-         this.Text = "KeepItClean";
+         this.Text = "Keep-It-Clean";
+         this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Save_UserSettings);
          ((System.ComponentModel.ISupportInitialize)(this.dataView)).EndInit();
-         this.menuStrip1.ResumeLayout(false);
-         this.menuStrip1.PerformLayout();
+         this.menuStrip.ResumeLayout(false);
+         this.menuStrip.PerformLayout();
          this.ResumeLayout(false);
          this.PerformLayout();
 
@@ -236,19 +289,24 @@
       private System.Windows.Forms.Label label1;
       private System.Windows.Forms.Label label_target;
       private System.Windows.Forms.TextBox textBox_target;
-      private System.Windows.Forms.Button button_browse_source;
-      private System.Windows.Forms.Button button_browse_target;
       private System.Windows.Forms.DataGridView dataView;
       private System.Windows.Forms.Label label_files;
-      private System.Windows.Forms.Button button_read;
-      private System.Windows.Forms.Button button_start;
-      private System.Windows.Forms.Button button_analise;
       private System.Windows.Forms.Label label_fileFilter;
       private System.Windows.Forms.TextBox textBox_fileFilter;
       private System.Windows.Forms.Label progress_lablel;
       private System.Windows.Forms.ProgressBar progressBar;
-      private System.Windows.Forms.MenuStrip menuStrip1;
-      private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+      private System.Windows.Forms.MenuStrip menuStrip;
+      private System.Windows.Forms.ToolStripMenuItem settingsMenuItem;
+      private System.Windows.Forms.ToolStripMenuItem deleteEmptyFoldersMenuItem;
+      private System.Windows.Forms.ToolStripMenuItem recursiveFileImportMenuItem;
+      private System.Windows.Forms.ToolStripMenuItem filesMenuItem;
+      private System.Windows.Forms.ToolStripMenuItem browseSourceMenuItem;
+      private System.Windows.Forms.ToolStripMenuItem browseTargetMenuItem;
+      private System.Windows.Forms.ToolTip toolTip;
+      private System.Windows.Forms.ToolStripMenuItem importMenuItem;
+      private System.Windows.Forms.ToolStripMenuItem analiseMenuItem;
+      private System.Windows.Forms.ToolStripMenuItem startMenuItem;
+      private System.Windows.Forms.ToolStripMenuItem dateErrorSeparationMenuItem;
    }
 }
 

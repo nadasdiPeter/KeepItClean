@@ -99,5 +99,35 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Settings.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Files.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Settings.512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Files.512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player.512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Plex.512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Import.256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Import.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Plex.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
