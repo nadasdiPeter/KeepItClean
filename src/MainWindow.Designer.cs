@@ -29,6 +29,7 @@
       private void InitializeComponent()
       {
          this.components = new System.ComponentModel.Container();
+         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
          this.textBox_source = new System.Windows.Forms.TextBox();
          this.label1 = new System.Windows.Forms.Label();
          this.label_target = new System.Windows.Forms.Label();
@@ -158,7 +159,7 @@
          this.menuStrip.Location = new System.Drawing.Point(0, 0);
          this.menuStrip.Name = "menuStrip";
          this.menuStrip.ShowItemToolTips = true;
-         this.menuStrip.Size = new System.Drawing.Size(70, 761);
+         this.menuStrip.Size = new System.Drawing.Size(98, 761);
          this.menuStrip.TabIndex = 15;
          this.menuStrip.Text = "Menu";
          // 
@@ -194,7 +195,7 @@
             this.dateErrorSeparationMenuItem});
          this.settingsMenuItem.Image = global::KeepItClean.Properties.Resources.Settings_512;
          this.settingsMenuItem.Name = "settingsMenuItem";
-         this.settingsMenuItem.Size = new System.Drawing.Size(57, 54);
+         this.settingsMenuItem.Size = new System.Drawing.Size(85, 54);
          this.settingsMenuItem.ToolTipText = "Settings";
          // 
          // deleteEmptyFoldersMenuItem
@@ -271,6 +272,7 @@
          this.Controls.Add(this.label1);
          this.Controls.Add(this.textBox_source);
          this.Controls.Add(this.menuStrip);
+         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
          this.MainMenuStrip = this.menuStrip;
          this.Name = "MainWindow";
          this.Text = "Keep-It-Clean";
