@@ -18,6 +18,8 @@ namespace KeepItClean
          Load_UserSettings();
          InitializeBackgroundWorker();
          textBox_fileFilter.Text = String.Join(", ", config.IMAGE_FORMATS);
+         this.menuStrip.Items.Add(new ToolStripSeparator());
+         this.menuStrip.Items.Insert(2, new ToolStripSeparator());
       }
 
 
@@ -87,9 +89,10 @@ namespace KeepItClean
          {
             if(Database.Files()[0].NewPath != "")
             {
-               FileMover.RelocateFiles();
+               FileMover fileMover = new FileMover(textBox_source.Text, textBox_target.Text);
+               fileMover.RelocateFiles();
                if(deleteEmptyFoldersMenuItem.Checked)
-                  FileMover.DeleteEmptyFolders(textBox_source.Text);
+                  fileMover.DeleteEmptyFolders(textBox_source.Text);
                SetProgressBarStatus(true, "Relocation completed.", 100);
                ClearDatabase();
             }
@@ -104,6 +107,20 @@ namespace KeepItClean
          }
       }
 
+      private void Restore_Click(object sender, EventArgs e)
+      {
+         CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+         dialog.InitialDirectory = "C:\\Users";
+         dialog.DefaultFileName = "ChangeLog.txt";
+         dialog.IsFolderPicker = false;
+         if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+         {
+            if(new FileRestorer(dialog.FileName).Start())
+               MessageBox.Show("Files successfully restored.", "KeepItClean Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+               MessageBox.Show("Process failed.", "KeepItClean Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+         }
+      }
 
 
       private void SetProgressBarStatus(bool isVisible, string message = "", int value = 0)
@@ -200,5 +217,7 @@ namespace KeepItClean
          Properties.Settings.Default.RECURSIVE_SEARCH_SETTING = recursiveFileImportMenuItem.Checked;
          Properties.Settings.Default.Save();
       }
+
+
    }
 }
