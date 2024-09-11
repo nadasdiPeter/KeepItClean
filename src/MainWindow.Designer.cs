@@ -61,16 +61,16 @@
          // textBox_source
          // 
          this.textBox_source.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-         this.textBox_source.Location = new System.Drawing.Point(158, 18);
+         this.textBox_source.Location = new System.Drawing.Point(88, 49);
          this.textBox_source.Name = "textBox_source";
-         this.textBox_source.Size = new System.Drawing.Size(810, 21);
+         this.textBox_source.Size = new System.Drawing.Size(880, 21);
          this.textBox_source.TabIndex = 0;
-         this.toolTip.SetToolTip(this.textBox_source, "Source folder path.");
+         this.toolTip.SetToolTip(this.textBox_source, "Source folder is the directory where your unorganised files can be found.");
          // 
          // label1
          // 
          this.label1.AutoSize = true;
-         this.label1.Location = new System.Drawing.Point(79, 23);
+         this.label1.Location = new System.Drawing.Point(9, 54);
          this.label1.Name = "label1";
          this.label1.Size = new System.Drawing.Size(73, 13);
          this.label1.TabIndex = 1;
@@ -79,7 +79,7 @@
          // label_target
          // 
          this.label_target.AutoSize = true;
-         this.label_target.Location = new System.Drawing.Point(76, 49);
+         this.label_target.Location = new System.Drawing.Point(6, 80);
          this.label_target.Name = "label_target";
          this.label_target.Size = new System.Drawing.Size(70, 13);
          this.label_target.TabIndex = 3;
@@ -88,28 +88,30 @@
          // textBox_target
          // 
          this.textBox_target.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-         this.textBox_target.Location = new System.Drawing.Point(158, 44);
+         this.textBox_target.Location = new System.Drawing.Point(88, 75);
          this.textBox_target.Name = "textBox_target";
-         this.textBox_target.Size = new System.Drawing.Size(810, 21);
+         this.textBox_target.Size = new System.Drawing.Size(880, 21);
          this.textBox_target.TabIndex = 2;
-         this.toolTip.SetToolTip(this.textBox_target, "Target folder path.");
+         this.toolTip.SetToolTip(this.textBox_target, "Target folderis the directory where the application will place the renamed organi" +
+        "sed files.");
          // 
          // dataView
          // 
+         this.dataView.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
          this.dataView.AllowUserToAddRows = false;
          this.dataView.AllowUserToDeleteRows = false;
          this.dataView.AllowUserToOrderColumns = true;
          this.dataView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
          this.dataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-         this.dataView.Location = new System.Drawing.Point(82, 186);
+         this.dataView.Location = new System.Drawing.Point(12, 231);
          this.dataView.Name = "dataView";
-         this.dataView.Size = new System.Drawing.Size(886, 563);
+         this.dataView.Size = new System.Drawing.Size(956, 518);
          this.dataView.TabIndex = 6;
          // 
          // label_files
          // 
          this.label_files.AutoSize = true;
-         this.label_files.Location = new System.Drawing.Point(79, 170);
+         this.label_files.Location = new System.Drawing.Point(12, 215);
          this.label_files.Name = "label_files";
          this.label_files.Size = new System.Drawing.Size(31, 13);
          this.label_files.TabIndex = 7;
@@ -118,7 +120,7 @@
          // label_fileFilter
          // 
          this.label_fileFilter.AutoSize = true;
-         this.label_fileFilter.Location = new System.Drawing.Point(79, 75);
+         this.label_fileFilter.Location = new System.Drawing.Point(9, 106);
          this.label_fileFilter.Name = "label_fileFilter";
          this.label_fileFilter.Size = new System.Drawing.Size(48, 13);
          this.label_fileFilter.TabIndex = 12;
@@ -127,15 +129,17 @@
          // textBox_fileFilter
          // 
          this.textBox_fileFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-         this.textBox_fileFilter.Location = new System.Drawing.Point(158, 70);
+         this.textBox_fileFilter.Location = new System.Drawing.Point(88, 101);
          this.textBox_fileFilter.Name = "textBox_fileFilter";
-         this.textBox_fileFilter.Size = new System.Drawing.Size(810, 21);
+         this.textBox_fileFilter.Size = new System.Drawing.Size(880, 21);
          this.textBox_fileFilter.TabIndex = 11;
+         this.toolTip.SetToolTip(this.textBox_fileFilter, "File extension filters need to be separated by comma. Filters will be applied dur" +
+        "ing the import.");
          // 
          // progress_lablel
          // 
          this.progress_lablel.AutoSize = true;
-         this.progress_lablel.Location = new System.Drawing.Point(79, 111);
+         this.progress_lablel.Location = new System.Drawing.Point(9, 142);
          this.progress_lablel.Name = "progress_lablel";
          this.progress_lablel.Size = new System.Drawing.Size(67, 13);
          this.progress_lablel.TabIndex = 13;
@@ -144,11 +148,15 @@
          // 
          // progressBar
          // 
-         this.progressBar.Location = new System.Drawing.Point(82, 127);
+         this.progressBar.Location = new System.Drawing.Point(12, 158);
          this.progressBar.Name = "progressBar";
-         this.progressBar.Size = new System.Drawing.Size(886, 23);
+         this.progressBar.Size = new System.Drawing.Size(956, 23);
          this.progressBar.TabIndex = 14;
          this.progressBar.Visible = false;
+         // 
+         // toolTip
+         // 
+         this.toolTip.AutomaticDelay = 200;
          // 
          // filesMenuItem
          // 
@@ -158,7 +166,7 @@
             this.toolStripSeparator1,
             this.restoreChangesMenuItem});
          this.filesMenuItem.Name = "filesMenuItem";
-         this.filesMenuItem.Size = new System.Drawing.Size(63, 23);
+         this.filesMenuItem.Size = new System.Drawing.Size(47, 23);
          this.filesMenuItem.Text = "Files";
          this.filesMenuItem.ToolTipText = "Files";
          // 
@@ -195,7 +203,7 @@
             this.recursiveFileImportMenuItem,
             this.dateErrorSeparationMenuItem});
          this.settingsMenuItem.Name = "settingsMenuItem";
-         this.settingsMenuItem.Size = new System.Drawing.Size(63, 23);
+         this.settingsMenuItem.Size = new System.Drawing.Size(70, 23);
          this.settingsMenuItem.Text = "Settings";
          this.settingsMenuItem.ToolTipText = "Settings";
          // 
@@ -244,7 +252,7 @@
          // analiseMenuItem
          // 
          this.analiseMenuItem.Name = "analiseMenuItem";
-         this.analiseMenuItem.Size = new System.Drawing.Size(63, 23);
+         this.analiseMenuItem.Size = new System.Drawing.Size(64, 23);
          this.analiseMenuItem.Text = "Analise";
          this.analiseMenuItem.ToolTipText = "Analise";
          this.analiseMenuItem.Click += new System.EventHandler(this.Analise_Click);
@@ -252,15 +260,14 @@
          // startMenuItem
          // 
          this.startMenuItem.Name = "startMenuItem";
-         this.startMenuItem.Size = new System.Drawing.Size(63, 23);
+         this.startMenuItem.Size = new System.Drawing.Size(50, 23);
          this.startMenuItem.Text = "Start";
          this.startMenuItem.ToolTipText = "Start";
          this.startMenuItem.Click += new System.EventHandler(this.Start_Click);
          // 
          // menuStrip
          // 
-         this.menuStrip.BackColor = System.Drawing.Color.DarkSeaGreen;
-         this.menuStrip.Dock = System.Windows.Forms.DockStyle.Left;
+         this.menuStrip.BackColor = System.Drawing.Color.NavajoWhite;
          this.menuStrip.Font = new System.Drawing.Font("Segoe UI", 10F);
          this.menuStrip.ImageScalingSize = new System.Drawing.Size(50, 50);
          this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -272,7 +279,7 @@
          this.menuStrip.Location = new System.Drawing.Point(0, 0);
          this.menuStrip.Name = "menuStrip";
          this.menuStrip.ShowItemToolTips = true;
-         this.menuStrip.Size = new System.Drawing.Size(76, 761);
+         this.menuStrip.Size = new System.Drawing.Size(984, 27);
          this.menuStrip.TabIndex = 15;
          this.menuStrip.Text = "Menu";
          // 
