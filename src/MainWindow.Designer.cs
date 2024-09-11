@@ -139,20 +139,18 @@
          // progress_lablel
          // 
          this.progress_lablel.AutoSize = true;
-         this.progress_lablel.Location = new System.Drawing.Point(9, 142);
+         this.progress_lablel.Location = new System.Drawing.Point(9, 145);
          this.progress_lablel.Name = "progress_lablel";
          this.progress_lablel.Size = new System.Drawing.Size(67, 13);
          this.progress_lablel.TabIndex = 13;
          this.progress_lablel.Text = "ProgressBar:";
-         this.progress_lablel.Visible = false;
          // 
          // progressBar
          // 
-         this.progressBar.Location = new System.Drawing.Point(12, 158);
+         this.progressBar.Location = new System.Drawing.Point(12, 161);
          this.progressBar.Name = "progressBar";
          this.progressBar.Size = new System.Drawing.Size(956, 23);
          this.progressBar.TabIndex = 14;
-         this.progressBar.Visible = false;
          // 
          // toolTip
          // 

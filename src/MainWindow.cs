@@ -19,6 +19,9 @@ namespace KeepItClean
          InitializeComponent();
          Load_UserSettings();
          InitializeBackgroundWorker();
+
+         SetProgressBarStatus("No task started.", 0);
+
          textBox_fileFilter.Text = String.Join(", ", config.IMAGE_FORMATS);
          this.menuStrip.Items.Add(new ToolStripSeparator());
          this.menuStrip.Items.Insert(2, new ToolStripSeparator());
@@ -72,7 +75,7 @@ namespace KeepItClean
             {
                Database.AssigneNewPaths(textBox_target.Text, dateErrorSeparationMenuItem.Checked);
                DataGridView_Refresh();
-               SetProgressBarStatus(true, "Analysis completed.", 100);
+               SetProgressBarStatus("Analysis completed.", 100);
             }
             else
             {
@@ -122,11 +125,8 @@ namespace KeepItClean
 
 
 
-      private void SetProgressBarStatus(bool isVisible, string message = "", int value = 0)
+      private void SetProgressBarStatus(string message = "", int value = 0)
       {
-         progress_lablel.Visible = isVisible;
-         progressBar.Visible = isVisible;
-
          progress_lablel.Text = message;
          progressBar.Value = value;
       }
@@ -197,12 +197,12 @@ namespace KeepItClean
       }
 
       // This event handler updates the progress.
-      private void Import_BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e) => SetProgressBarStatus(true, "Importing files...", e.ProgressPercentage);
+      private void Import_BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e) => SetProgressBarStatus("Importing files...", e.ProgressPercentage);
 
       // This event handler deals with the results of the background operation.
       private void Import_BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
       {
-         SetProgressBarStatus(true, "Import completed. (" + Database.FileCount() + " files)", 100);
+         SetProgressBarStatus("Import completed. (" + Database.FileCount() + " files)", 100);
          DataGridView_Update(Database.Files());
       }
 
@@ -217,11 +217,11 @@ namespace KeepItClean
             fileMover.DeleteEmptyFolders(textBox_source.Text);
       }
 
-      private void Relocate_BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e) => SetProgressBarStatus(true, "Relocating files...", e.ProgressPercentage);
+      private void Relocate_BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e) => SetProgressBarStatus("Relocating files...", e.ProgressPercentage);
 
       private void Relocate_BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
       {
-         SetProgressBarStatus(true, "Relocation completed.", 100);
+         SetProgressBarStatus("Relocation completed.", 100);
          ClearDatabase();
       }
 
