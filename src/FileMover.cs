@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.ComponentModel;
+using System.IO;
 
 namespace KeepItClean.src
 {
@@ -6,11 +7,16 @@ namespace KeepItClean.src
    {
       public string SourceFolder { get; set; }
       public string TargetFolder { get; set; }
+      public BackgroundWorker Worker { get; }
+      public int Progress { get; set; } = 0;
+      public double ProgressStep { get; set; } = 0;
 
-      public FileMover(string source, string target)
+      public FileMover(string source, string target, ref BackgroundWorker worker)
       {
          SourceFolder = source;
          TargetFolder = target;
+         Worker = worker;
+         ProgressStep = Database.FileCount() / 100.0;
       }
 
       public void DeleteEmptyFolders(string startLocation)
@@ -25,6 +31,7 @@ namespace KeepItClean.src
 
       public void RelocateFiles()
       {
+         double progress_counter = 0;
          ChangeLog logger = new ChangeLog(TargetFolder);
 
          foreach (var f in Database.Files())
@@ -32,10 +39,23 @@ namespace KeepItClean.src
             if (!Directory.Exists(f.NewPath_Directory()))
                Directory.CreateDirectory(f.NewPath_Directory());
             File.Move(f.Path, f.NewPath);
+            progress_counter = ReportProgress(progress_counter);
             logger.Add(f.Path, f.NewPath);
          }
 
          logger.Save();
+      }
+
+      private double ReportProgress(double counter)
+      {
+         counter++;
+         if (counter >= ProgressStep)
+         {
+            Progress += (int)(counter / ProgressStep);
+            Worker.ReportProgress((Progress > 100) ? 100 : Progress);
+            counter = 0;
+         }
+         return counter;
       }
    }
 }

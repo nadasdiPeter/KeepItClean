@@ -96,6 +96,10 @@
          // 
          // dataView
          // 
+         this.dataView.AllowUserToAddRows = false;
+         this.dataView.AllowUserToDeleteRows = false;
+         this.dataView.AllowUserToOrderColumns = true;
+         this.dataView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
          this.dataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
          this.dataView.Location = new System.Drawing.Point(82, 186);
          this.dataView.Name = "dataView";

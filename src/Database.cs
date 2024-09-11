@@ -15,8 +15,6 @@ namespace KeepItClean.src
       public static List<IFile> Files() => files;
 
       public static int FileCount() => files.Count();
-
-      
       
       /* Action */
 

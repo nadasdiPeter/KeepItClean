@@ -10,7 +10,9 @@ namespace KeepItClean
 {
    public partial class MainWindow : Form
    {
-      private BackgroundWorker Read_BackgroundWorker = new BackgroundWorker();
+      private BackgroundWorker Import_BackgroundWorker = new BackgroundWorker();
+
+      private BackgroundWorker Relocate_BackgroundWorker = new BackgroundWorker();
 
       public MainWindow()
       {
@@ -50,10 +52,10 @@ namespace KeepItClean
       {
          if(Directory.Exists(textBox_source.Text))
          {
-            if (Read_BackgroundWorker.IsBusy != true)
+            if (Import_BackgroundWorker.IsBusy != true)
             {
                ClearDatabase();
-               Read_BackgroundWorker.RunWorkerAsync(); // Start the asynchronous operation.
+               Import_BackgroundWorker.RunWorkerAsync(); // Start the asynchronous operation.
             }
          }
          else
@@ -89,12 +91,8 @@ namespace KeepItClean
          {
             if(Database.Files()[0].NewPath != "")
             {
-               FileMover fileMover = new FileMover(textBox_source.Text, textBox_target.Text);
-               fileMover.RelocateFiles();
-               if(deleteEmptyFoldersMenuItem.Checked)
-                  fileMover.DeleteEmptyFolders(textBox_source.Text);
-               SetProgressBarStatus(true, "Relocation completed.", 100);
-               ClearDatabase();
+               if (Relocate_BackgroundWorker.IsBusy != true)
+                  Relocate_BackgroundWorker.RunWorkerAsync();
             }
             else
             {
@@ -123,6 +121,7 @@ namespace KeepItClean
       }
 
 
+
       private void SetProgressBarStatus(bool isVisible, string message = "", int value = 0)
       {
          progress_lablel.Visible = isVisible;
@@ -148,8 +147,9 @@ namespace KeepItClean
          dataView.Columns["Directory"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
          dataView.Columns["FileName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
          dataView.Columns["Extension"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-         dataView.Columns["NewPath"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
          dataView.Columns["CreationDate"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+         dataView.Columns["DateError"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+         dataView.Columns["NewPath"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
       }
 
       private void DataGridView_Refresh()
@@ -169,15 +169,20 @@ namespace KeepItClean
 
       private void InitializeBackgroundWorker()
       {
-         Read_BackgroundWorker.DoWork += new DoWorkEventHandler(Read_BackgroundWorker_DoWork);
-         Read_BackgroundWorker.ProgressChanged += new ProgressChangedEventHandler(Read_BackgroundWorker_ProgressChanged);
-         Read_BackgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Read_BackgroundWorker_RunWorkerCompleted);
-         Read_BackgroundWorker.WorkerReportsProgress = true;
-         Read_BackgroundWorker.WorkerSupportsCancellation = true;
+         Import_BackgroundWorker.DoWork += new DoWorkEventHandler(Import_BackgroundWorker_DoWork);
+         Import_BackgroundWorker.ProgressChanged += new ProgressChangedEventHandler(Import_BackgroundWorker_ProgressChanged);
+         Import_BackgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Import_BackgroundWorker_RunWorkerCompleted);
+         Import_BackgroundWorker.WorkerReportsProgress = true;
+         Import_BackgroundWorker.WorkerSupportsCancellation = true;
+
+         Relocate_BackgroundWorker.DoWork += new DoWorkEventHandler(Relocate_BackgroundWorker_DoWork);
+         Relocate_BackgroundWorker.ProgressChanged += new ProgressChangedEventHandler(Relocate_BackgroundWorker_ProgressChanged);
+         Relocate_BackgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Relocate_BackgroundWorker_RunWorkerCompleted);
+         Relocate_BackgroundWorker.WorkerReportsProgress = true;
       }
 
       // This event handler is where the time-consuming work is done.
-      private void Read_BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+      private void Import_BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
       {
          BackgroundWorker worker = sender as BackgroundWorker;
          if (worker.CancellationPending == true)
@@ -192,13 +197,32 @@ namespace KeepItClean
       }
 
       // This event handler updates the progress.
-      private void Read_BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e) => SetProgressBarStatus(true, "Importing files...", e.ProgressPercentage);
+      private void Import_BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e) => SetProgressBarStatus(true, "Importing files...", e.ProgressPercentage);
 
       // This event handler deals with the results of the background operation.
-      private void Read_BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+      private void Import_BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
       {
          SetProgressBarStatus(true, "Import completed. (" + Database.FileCount() + " files)", 100);
          DataGridView_Update(Database.Files());
+      }
+
+
+      private void Relocate_BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+      {
+         BackgroundWorker worker = sender as BackgroundWorker;
+
+         FileMover fileMover = new FileMover(textBox_source.Text, textBox_target.Text, ref worker);
+         fileMover.RelocateFiles();
+         if (deleteEmptyFoldersMenuItem.Checked)
+            fileMover.DeleteEmptyFolders(textBox_source.Text);
+      }
+
+      private void Relocate_BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e) => SetProgressBarStatus(true, "Relocating files...", e.ProgressPercentage);
+
+      private void Relocate_BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+      {
+         SetProgressBarStatus(true, "Relocation completed.", 100);
+         ClearDatabase();
       }
 
 
@@ -217,7 +241,6 @@ namespace KeepItClean
          Properties.Settings.Default.RECURSIVE_SEARCH_SETTING = recursiveFileImportMenuItem.Checked;
          Properties.Settings.Default.Save();
       }
-
 
    }
 }

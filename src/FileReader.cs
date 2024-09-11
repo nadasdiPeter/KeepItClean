@@ -41,21 +41,14 @@ namespace KeepItClean.src
 
       private void Search(string path)
       {
-         double cntr = 0;
+         double progress_counter = 0;
          try
          {
             foreach (string f in Directory.GetFiles(path))
                if (Extensions == null || Extensions.Contains(System.IO.Path.GetExtension(f).ToLower()))
                {
                   Database.Add(new IFile(f));
-                  cntr++;
-                  if( cntr >= ProgressStep)
-                  {
-                     Progress += (int)(cntr / ProgressStep);
-                     Worker.ReportProgress((Progress > 100) ? 100 : Progress);
-                     cntr = 0;
-                     
-                  }
+                  progress_counter = ReportProgress(progress_counter);
                }
             if (RecursiveSearch)
                foreach (string d in Directory.GetDirectories(path))
@@ -66,5 +59,18 @@ namespace KeepItClean.src
             DebugFileWriter.Add_Exception(excpt.Message);
          }
       }
+
+      private double ReportProgress(double counter)
+      {
+         counter++;
+         if (counter >= ProgressStep)
+         {
+            Progress += (int)(counter / ProgressStep);
+            Worker.ReportProgress((Progress > 100) ? 100 : Progress);
+            counter = 0;
+         }
+         return counter;
+      }
+
    }
 }
